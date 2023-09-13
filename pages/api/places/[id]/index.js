@@ -16,16 +16,14 @@ export default async function handler(request, response) {
       return response.status(404).json({ status: "Not Found" });
     }
     response.status(200).json(place);
-  }
-  if (request.method === "PUT") {
+  } else if (request.method === "PUT") {
     const placeData = request.body;
     await Place.findByIdAndUpdate(id, placeData);
 
-    return response.status(200).json({ message: "places are updated!" });
-  }
-  if (request.method === "DELETE") {
+    return response.status(200).json({ message: "Place updated!" });
+  } else if (request.method === "DELETE") {
     await Place.findByIdAndDelete(id);
-    return response.status(200).json({ message: "place is deleted!" });
+    return response.status(200).json({ message: "Place deleted!" });
   } else {
     return response.status(405), json({ message: "Method not allowed" });
   }

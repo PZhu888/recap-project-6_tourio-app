@@ -1,5 +1,5 @@
-import dbConnect from "@/db/connect";
-import Place from "@/db/models/Place";
+import dbConnect from "../../../db/connect";
+import Place from "../../../db/models/Place";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -7,8 +7,7 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const places = await Place.find();
     return response.status(200).json(places);
-  }
-  if (request.method === "POST") {
+  } else if (request.method === "POST") {
     try {
       const plaseData = request.body;
       await Place.create(plaseData);

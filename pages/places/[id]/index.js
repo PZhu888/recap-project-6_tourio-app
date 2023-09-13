@@ -32,6 +32,7 @@ export default function DetailsPage() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
+  console.log(id);
 
   const { data: place, isLoading, error } = useSWR(`/api/places/${id}`);
 

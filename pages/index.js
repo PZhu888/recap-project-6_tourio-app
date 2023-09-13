@@ -24,18 +24,19 @@ const FixedLink = styled(StyledLink)`
 `;
 export default function Home() {
   const { data } = useSWR("/api/places", { fallbackData: [] });
+  console.log(data);
 
   return (
     <>
       <List role="list">
         {data.map((place) => {
           return (
-            <ListItem key={place.id}>
+            <ListItem key={place._id}>
               <Card
                 name={place.name}
                 image={place.image}
                 location={place.location}
-                id={place.id}
+                id={place._id}
               />
             </ListItem>
           );
